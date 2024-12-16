@@ -108,7 +108,7 @@ public class OpenAIController {
             return null; // 빈 값 또는 null일 경우 좌표를 찾지 않음
         }
 
-        String apiKey = "AIzaSyAiPpnAj0XSUTz5QaALJ4iYWA0xEaGWIr8"; // 구글 API 키
+        String apiKey = "secret"; // 구글 API 키
         String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + place + "&key=" + apiKey;
 
         RestTemplate restTemplate = new RestTemplate();
