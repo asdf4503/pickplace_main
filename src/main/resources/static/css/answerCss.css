@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f5f5f5; /* 배경을 밝은 색으로 설정 */
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 2rem; /* 제목과 폼 사이에 여백 추가 */
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 1.5rem;
+    border: 1px solid #ccc;  /* 폼 영역에 테두리 추가 */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%; /* 버튼을 전체 너비로 확장 */
+    box-sizing: border-box;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* 추가된 스타일 - 각 요소 간의 여백을 조정 */
+h2, p {
+    margin-bottom: 1.5rem;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #555;
+    white-space: pre-wrap; /* 줄바꿈을 허용 */
+    word-wrap: break-word; /* 긴 단어 줄바꿈 */
+}
+
+/* 로고 컨테이너 */
+.logo-container {
+    position: fixed; /* 화면에 고정 */
+    top: 20px;       /* 위쪽 여백 */
+    left: 20px;      /* 왼쪽 여백 */
+    z-index: 1000;   /* 다른 요소 위에 표시 */
+}
+
+/* 로고 이미지 */
+.logo {
+    max-width: 50px; /* 로고 크기 */
+    height: auto;
+}

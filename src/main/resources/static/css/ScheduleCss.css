@@ -1,0 +1,77 @@
+/* 기본 레이아웃 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 화면 전체 높이를 사용 */
+    background-color: #f9f9f9;
+}
+
+/* 컨테이너 박스 스타일 */
+.container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 왼쪽 섹션 (지역 및 목록) */
+.left-section {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #f4f4f4;
+    border-right: 2px solid #ddd;
+}
+
+.left-section h3 {
+    margin-top: 0;
+}
+
+.left-section ul {
+    padding: 0;
+    list-style: none;
+}
+
+.left-section li {
+    margin: 10px 0;
+    padding: 10px;
+    background: #e9e9e9;
+    border-radius: 5px;
+}
+
+/* 오른쪽 섹션 (지도) */
+.right-section {
+    flex: 2;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+/* 로고 컨테이너 */
+.logo-container {
+    position: fixed; /* 화면에 고정 */
+    top: 20px;       /* 위쪽 여백 */
+    left: 20px;      /* 왼쪽 여백 */
+    z-index: 1000;   /* 다른 요소 위에 표시 */
+}
+
+/* 로고 이미지 */
+.logo {
+    max-width: 50px; /* 로고 크기 */
+    height: auto;
+}

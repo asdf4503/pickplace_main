@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickPlace Map</title>
+    <style>
+        #map {
+            height: 750px;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h3>전체 지도 서비스</h3>
+
+<!-- 위치 입력 폼 -->
+<div>
+    <label>출발지: <input type="text" id="start-place" placeholder="출발지 장소명"></label><br><br>
+    <label>목적지: <input type="text" id="end-place" placeholder="목적지 장소명"></label><br><br>
+    <button onclick="drawLine()">경로 표시</button>
+</div>
+
+<div id="map"></div>
+
+<script>
+    let map;
+    let line;
+    let geocoder;
+    let markers = []; // 마커를 저장할 배열
+
+    function initMap() {
+        // 지도 초기화
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 37.3047, lng: 127.9226 }, // 초기 위치
+            zoom: 15,
+        });
+
+        // Geocoding 서비스 초기화
+        geocoder = new google.maps.Geocoder();
+    }
+
+    function drawLine() {
+        // 장소명을 입력받기
+        const startPlace = document.getElementById("start-place").value;
+        const endPlace = document.getElementById("end-place").value;
+
+        // 입력된 값 확인
+        if (!startPlace || !endPlace) {
+            alert("출발지와 목적지 장소명을 모두 입력하세요.");
+            return;
+        }
+
+        // 기존 마커와 선 제거
+        clearMarkers();
+        if (line) {
+            line.setMap(null);
+        }
+
+        // 출발지와 목적지의 위치를 알아내기 위한 Promise 생성
+        Promise.all([getCoordinates(startPlace), getCoordinates(endPlace)])
+            .then(([startLocation, endLocation]) => {
+                // 출발지와 목적지에 마커 추가
+                markers.push(new google.maps.Marker({
+                    position: startLocation,
+                    map: map,
+                    title: "출발지",
+                }));
+
+                markers.push(new google.maps.Marker({
+                    position: endLocation,
+                    map: map,
+                    title: "목적지",
+                }));
+
+                // 직선 경로 그리기
+                line = new google.maps.Polyline({
+                    path: [startLocation, endLocation],
+                    geodesic: true,
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 3,
+                });
+
+                // 지도에 선 추가 및 지도 중심 조정
+                line.setMap(map);
+                map.setCenter(startLocation);
+            })
+            .catch((error) => {
+                alert("장소를 찾을 수 없습니다: " + error);
+            });
+    }
+
+    function getCoordinates(place) {
+        return new Promise((resolve, reject) => {
+            geocoder.geocode({ address: place }, (results, status) => {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    resolve(results[0].geometry.location);
+                } else {
+                    reject(status);
+                }
+            });
+        });
+    }
+
+    function clearMarkers() {
+        // 모든 마커를 지도에서 제거하고 배열을 비웁니다.
+        markers.forEach(marker => marker.setMap(null));
+        markers = [];
+    }
+
+    // Google Maps JavaScript API 비동기적으로 로드
+    function loadScript(url) {
+        const script = document.createElement('script');
+        script.src = url;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+    }
+
+    // API 로드 함수 호출
+    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAiPpnAj0XSUTz5QaALJ4iYWA0xEaGWIr8&callback=initMap&libraries=places");
+</script>
+</body>
+</html>

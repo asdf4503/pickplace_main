@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/answerCss.css" rel="stylesheet" type="text/css"/>
+    <title>답변</title>
+</head>
+<body>
+
+<!-- 로고 컨테이너 -->
+<div class="logo-container">
+    <img src="/Logo/pickplace_logo.png" alt="로고" class="logo">
+</div>
+
+<div class="container">
+    <h1>Pickpace</h1>
+
+    <!-- 폼 부분 박스 처리 -->
+    <div class="form-container">
+        <h2>여행 지역</h2>
+        <p><strong>지역:</strong> <span th:text="${location}"></span></p>
+        <p><strong>설명:</strong> <span th:text="${description}"></span></p>
+
+        <form action="/Schedule" method="post">
+            <input type="hidden" name="location" th:value="${location}"> <!-- 지역명만 전달 -->
+            <button type="submit">일정 생성</button> <!-- 일정 생성 버튼 -->
+        </form>
+    </div>
+
+    <a href="/">다시 질문하기</a> <!-- 메인 폼으로 돌아가는 링크 -->
+</div>
+
+</body>
+</html>

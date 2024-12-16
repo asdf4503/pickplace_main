@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>여행 일정</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiPpnAj0XSUTz5QaALJ4iYWA0xEaGWIr8"></script>
+  <link rel="stylesheet" href="/css/ScheduleCss.css">
+  <script th:inline="javascript">
+    function initMap() {
+      const coordinates = /*[[${coordinates}]]*/ [];
+      if (!coordinates || coordinates.length === 0) {
+        console.error("No coordinates found.");
+        return;
+      }
+
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: coordinates[0].lat, lng: coordinates[0].lng },
+        zoom: 10,
+      });
+
+      const path = [];
+      coordinates.forEach(function (location, index) {
+        new google.maps.Marker({
+          position: { lat: location.lat, lng: location.lng },
+          map: map,
+          title: "장소 " + (index + 1),
+        });
+        path.push(new google.maps.LatLng(location.lat, location.lng));
+      });
+
+      const polyline = new google.maps.Polyline({
+        path: path,
+        geodesic: true,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+      });
+
+      polyline.setMap(map);
+    }
+  </script>
+</head>
+<body onload="initMap()">
+
+<!-- 로고 컨테이너 -->
+<div class="logo-container">
+  <img src="/Logo/pickplace_logo.png" alt="로고" class="logo">
+</div>
+
+<!-- 기존 내용 -->
+<div class="container">
+  <!-- 왼쪽 섹션 -->
+  <div class="left-section">
+    <h1>여행 일정</h1>
+    <h3>여행 지역</h3>
+    <p th:text="${location}"></p>
+    <h3>방문 장소</h3>
+    <ul>
+      <li th:each="place : ${placesList}" th:text="${place}"></li>
+    </ul>
+    <a href="/">일정 다시 생성하기</a>
+  </div>
+
+  <!-- 오른쪽 섹션 -->
+  <div class="right-section">
+    <div id="map"></div>
+  </div>
+</div>
+</body>
+</html>
