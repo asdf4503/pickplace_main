@@ -71,6 +71,7 @@ https://github.com/user-attachments/assets/16ace717-5fce-415c-8f07-d6d35b2c1421
 
 # 사용 언어 및 툴
 ![Java](https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white)
+![javascript](https://img.shields.io/badge/javascript-#F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white)
 ![intellijidea](https://img.shields.io/badge/intellij%20idea-000000.svg?&style=for-the-badge&logo=intellij%20idea&logoColor=white)
 
 - 해당 Repositories는 기능 4번 메인 기능만 탑재되어있다.
