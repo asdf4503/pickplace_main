@@ -67,5 +67,6 @@ etc. 구글 랜즈 api를 사용하여 주소가 없는 장소의 사진으로 �
 4. 여행 일정 생성
 
 # 기능 구현 영상
+https://github.com/user-attachments/assets/16ace717-5fce-415c-8f07-d6d35b2c1421
 
 - 해당 Repositories는 기능 4번 메인 기능만 탑재되어있다.
